@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Projects — Gokul R</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:      #fdf8f2;
+  --white:   #ffffff;
+  --ink:     #1c1917;
+  --ink2:    #44403c;
+  --muted:   #78716c;
+  --subtle:  #a8a29e;
+  --border:  #e7e0d8;
+  --orange:  #f97316;
+  --orange2: #fb923c;
+  --orange-g: rgba(249,115,22,0.09);
+  --orange-b: rgba(249,115,22,0.18);
+  --green:   #16a34a;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; }
+
+.wavy {
+  text-decoration: underline wavy var(--orange);
+  text-underline-offset: 5px;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(253,248,242,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 max(32px, 5vw);
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px;
+}
+.nav-logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.25rem; color: var(--ink);
+  display: flex; align-items: center; gap: 8px;
+}
+.nav-logo .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--orange);
+  display: inline-block;
+}
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a {
+  font-size: 13px; font-weight: 500; color: var(--muted);
+  position: relative; transition: color .2s;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute; bottom: -2px; left: 0; right: 0;
+  height: 2px; background: var(--orange);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .25s ease;
+  border-radius: 2px;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-links a.active { color: var(--ink); }
+.nav-links a.active::after { transform: scaleX(1); }
+.nav-btn {
+  font-size: 13px; font-weight: 600;
+  background: var(--ink); color: #fff;
+  padding: 8px 20px; border-radius: 99px;
+  transition: background .2s, transform .2s;
+}
+.nav-btn:hover { background: var(--orange); transform: translateY(-1px); }
+
+/* ─── HERO ─── */
+#hero {
+  max-width: 960px; margin: 0 auto;
+  padding: 80px max(32px, 5vw) 72px;
+  border-bottom: 1px solid var(--border);
+}
+.hero-hi {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 500; color: var(--muted);
+  margin-bottom: 20px;
+  background: var(--orange-g); border: 1px solid var(--orange-b);
+  padding: 5px 14px; border-radius: 99px;
+}
+.hero-hi .blink { animation: blink 1.5s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2.8rem, 5.5vw, 4.2rem);
+  line-height: 1.1; letter-spacing: -1px;
+  color: var(--ink); margin-bottom: 16px;
+}
+.hero h1 em {
+  font-style: italic; color: var(--orange);
+}
+.hero-desc {
+  font-size: 16px; font-weight: 300; color: var(--muted);
+  max-width: 540px; line-height: 1.8; margin-bottom: 32px;
+}
+.hero-desc strong { font-weight: 600; color: var(--ink2); }
+
+.hero-meta {
+  display: flex; gap: 10px; flex-wrap: wrap; margin-top: 28px;
+}
+.hero-meta-tag {
+  font-size: 12px; font-weight: 500;
+  background: var(--white); color: var(--muted);
+  border: 1.5px solid var(--border);
+  padding: 6px 14px; border-radius: 99px;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.hero-meta-tag span { color: var(--orange); }
+
+/* ─── CONTAINER ─── */
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 max(32px, 5vw); }
+
+/* ─── SECTION ─── */
+.section { padding: 64px 0; border-bottom: 1px solid var(--border); }
+.section:last-child { border-bottom: none; }
+.sec-head { margin-bottom: 40px; }
+.sec-eyebrow {
+  font-size: 11px; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--orange);
+  margin-bottom: 6px;
+}
+.sec-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: var(--ink); letter-spacing: -.5px; line-height: 1.1;
+}
+.sec-subtitle {
+  font-size: 14px; color: var(--muted); margin-top: 8px; font-weight: 300; line-height: 1.7;
+}
+
+/* ─── DETAILED PROJECT CARDS ─── */
+.proj-grid-detailed { display: flex; flex-direction: column; gap: 28px; }
+
+.proj-card-detailed {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  transition: border-color .25s, transform .3s, box-shadow .3s;
+}
+.proj-card-detailed::before {
+  content: '';
+  position: absolute; top: 0; left: 0; bottom: 0; width: 4px;
+  background: var(--orange);
+  transform: scaleY(0); transform-origin: top;
+  transition: transform .3s ease;
+  border-radius: 3px 0 0 3px;
+}
+.proj-card-detailed:hover {
+  border-color: #fbd5b5;
+  transform: translateY(-4px);
+  box-shadow: 0 14px 48px rgba(249,115,22,.12);
+}
+.proj-card-detailed:hover::before { transform: scaleY(1); }
+
+.proj-card-header {
+  padding: 28px 32px 20px;
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.proj-card-header-left {}
+
+.proj-num-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 600; color: var(--subtle);
+  letter-spacing: .1em; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.proj-num-badge .badge-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--orange); opacity: .6;
+}
+
+.proj-title-detailed {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.35rem, 2.5vw, 1.65rem);
+  color: var(--ink); line-height: 1.15; margin-bottom: 6px;
+}
+
+.proj-type-badge {
+  display: inline-block;
+  font-size: 11px; font-weight: 600;
+  color: var(--orange); background: var(--orange-g);
+  border: 1px solid var(--orange-b);
+  padding: 3px 10px; border-radius: 99px;
+  letter-spacing: .04em; text-transform: uppercase;
+}
+
+.proj-card-header-right {
+  flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; align-items: flex-end;
+}
+
+.proj-card-body {
+  padding: 24px 32px;
+  display: grid; grid-template-columns: 1fr 280px;
+  gap: 32px;
+}
+
+.proj-desc-detailed {
+  font-size: 13.5px; color: var(--muted); line-height: 1.9;
+  margin-bottom: 20px;
+}
+
+.proj-features {}
+.proj-features-title {
+  font-size: 11px; font-weight: 600; color: var(--ink2);
+  text-transform: uppercase; letter-spacing: .1em;
+  margin-bottom: 12px;
+}
+.proj-features-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.proj-features-list li {
+  font-size: 13px; color: var(--muted);
+  display: flex; align-items: flex-start; gap: 9px; line-height: 1.6;
+}
+.proj-features-list li::before {
+  content: '→'; font-size: 10px; color: var(--orange);
+  opacity: .7; flex-shrink: 0; margin-top: 3px;
+}
+
+/* right panel */
+.proj-panel {
+  border-left: 1px solid var(--border);
+  padding-left: 28px;
+  display: flex; flex-direction: column; gap: 24px;
+}
+.proj-panel-section {}
+.proj-panel-label {
+  font-size: 10px; font-weight: 600; color: var(--subtle);
+  text-transform: uppercase; letter-spacing: .1em;
+  margin-bottom: 10px;
+}
+.stack-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.stack-pill {
+  font-size: 11px; font-weight: 500;
+  background: var(--orange-g); color: var(--orange);
+  border: 1px solid var(--orange-b);
+  padding: 4px 11px; border-radius: 99px;
+}
+
+.proj-actions { display: flex; flex-direction: column; gap: 8px; }
+.proj-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 600;
+  padding: 9px 18px; border-radius: 99px;
+  border: 1.5px solid var(--border);
+  color: var(--muted); background: transparent;
+  transition: all .2s; cursor: pointer; text-align: center;
+  justify-content: center;
+}
+.proj-btn:hover { border-color: var(--orange); color: var(--orange); background: var(--orange-g); }
+.proj-btn.primary {
+  background: var(--orange); color: #fff; border-color: var(--orange);
+}
+.proj-btn.primary:hover { background: #ea6c0a; box-shadow: 0 6px 20px rgba(249,115,22,.3); transform: translateY(-1px); }
+.proj-btn svg { flex-shrink: 0; }
+
+/* ─── GITHUB CTA ─── */
+.github-cta {
+  text-align: center;
+  padding: 56px 32px;
+}
+.github-cta-icon {
+  width: 56px; height: 56px; border-radius: 16px;
+  background: var(--orange-g); border: 1px solid var(--orange-b);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px; font-size: 24px;
+}
+.github-cta h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.8rem; color: var(--ink); margin-bottom: 10px; letter-spacing: -.5px;
+}
+.github-cta p {
+  font-size: 14px; color: var(--muted); line-height: 1.8;
+  max-width: 400px; margin: 0 auto 28px;
+}
+.github-cta-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+/* reuse portfolio button styles */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--orange); color: #fff;
+  padding: 11px 24px; border-radius: 99px;
+  font-size: 14px; font-weight: 600;
+  transition: all .2s;
+}
+.btn-primary:hover { background: #ea6c0a; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(249,115,22,.3); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: transparent; color: var(--ink2);
+  padding: 11px 24px; border-radius: 99px;
+  font-size: 14px; font-weight: 500;
+  border: 1.5px solid var(--border);
+  transition: all .2s;
+}
+.btn-ghost:hover { border-color: var(--orange); color: var(--orange); transform: translateY(-2px); }
+
+/* ─── CONTACT ─── */
+#contact-section {
+  background: var(--ink);
+  padding: 80px max(32px, 5vw);
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+#contact-section::before {
+  content: '';
+  position: absolute; top: -120px; left: 50%; transform: translateX(-50%);
+  width: 500px; height: 400px;
+  background: radial-gradient(ellipse, rgba(249,115,22,.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.contact-inner { position: relative; max-width: 520px; margin: 0 auto; }
+.contact-emoji { font-size: 2.5rem; margin-bottom: 16px; }
+#contact-section h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem); color: #fff;
+  letter-spacing: -1px; margin-bottom: 12px; line-height: 1.1;
+}
+#contact-section h2 em { font-style: italic; color: var(--orange2); }
+#contact-section p { font-size: 14px; color: #a8a29e; line-height: 1.8; margin-bottom: 36px; }
+.contact-links { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.c-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,.07); color: #d6d3d1;
+  border: 1px solid rgba(255,255,255,.12);
+  padding: 11px 22px; border-radius: 99px;
+  font-size: 13px; font-weight: 500;
+  transition: all .2s;
+}
+.c-link:hover { background: rgba(255,255,255,.12); color: #fff; transform: translateY(-2px); }
+.c-link.primary { background: var(--orange); color: #fff; border-color: var(--orange); }
+.c-link.primary:hover { background: #ea6c0a; box-shadow: 0 6px 24px rgba(249,115,22,.4); }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--ink); border-top: 1px solid rgba(255,255,255,.06);
+  padding: 18px max(32px, 5vw);
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 12px; color: #57534e;
+}
+footer a { color: var(--orange); }
+
+/* ─── SCROLL REVEAL ─── */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .55s ease, transform .55s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--orange); }
+
+/* ─── MOBILE ─── */
+@media(max-width: 768px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  #hero { padding: 52px 20px 48px; }
+  .wrap { padding: 0 20px; }
+  .proj-card-body { grid-template-columns: 1fr; }
+  .proj-panel { border-left: none; border-top: 1px solid var(--border); padding-left: 0; padding-top: 20px; }
+  .proj-card-header { flex-direction: column; gap: 12px; }
+  .proj-card-header-right { align-items: flex-start; }
+  .proj-actions { flex-direction: row; }
+  .github-cta-btns { flex-direction: column; align-items: center; }
+}
+
+@media(max-width: 480px) {
+  .proj-card-header, .proj-card-body { padding: 20px; }
+  .proj-actions { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index2.html" class="nav-logo">
+    Gokul R <span class="dot"></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index2.html#skills">Skills</a></li>
+    <li><a href="index2.html#experience">Experience</a></li>
+    <li><a href="projects.html" class="active">Projects</a></li>
+    <li><a href="index2.html#education">Education</a></li>
+  </ul>
+  <a href="https://drive.google.com/file/d/1qVssc4py6gnAvdmnpbxxEdR1jhvBA94D/view?usp=sharing" target="_blank" class="nav-btn">
+    Resume
+</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-hi">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" color="#f97316"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+    <span>Selected Works</span>
+    <span class="blink">_</span>
+  </div>
+  <h1>My <em>Projects.</em></h1>
+  <p class="hero-desc">
+     A collection of backend systems and full-stack applications I’ve developed using 
+    <strong>Java</strong>, <strong>Python</strong>, and modern web technologies, focused on 
+    APIs, databases, and real-world problem solving.
+  </p>
+  <div class="hero-meta">
+    <span class="hero-meta-tag"><span>▸</span> Java &amp; Python</span>
+    <span class="hero-meta-tag"><span>▸</span> Backend Systems</span>
+    <span class="hero-meta-tag"><span>▸</span> Data-Driven Apps</span>
+    <span class="hero-meta-tag"><span>▸</span> 4 Projects</span>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <!-- DETAILED PROJECTS -->
+  <div class="section" id="projects">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">What I've built</div>
+      <h2 class="sec-title">Projects</h2>
+      <p class="sec-subtitle">Full breakdowns of each project — tech stack, key features, and source code.</p>
+    </div>
+
+    <div class="proj-grid-detailed">
+
+      <!-- PROJECT 01 -->
+      <div class="proj-card-detailed reveal">
+        <div class="proj-card-header">
+          <div class="proj-card-header-left">
+            <div class="proj-num-badge">
+              <span class="badge-dot"></span>
+              Project 01
+            </div>
+            <h2 class="proj-title-detailed">Employee Management System</h2>
+            <span class="proj-type-badge">Desktop Application</span>
+          </div>
+          <div class="proj-card-header-right">
+ 
+</div>
+        </div>
+        <div class="proj-card-body">
+          <div class="proj-main">
+            <p class="proj-desc-detailed">
+               Desktop application for managing employee records with CRUD operations, MySQL integration, and CSV export.
+            </p>
+            <div class="proj-features">
+              <div class="proj-features-title">Key Features</div>
+              <ul class="proj-features-list">
+                <li>CRUD operations — Add, Update, Delete, and Search employee records</li>
+                <li>MySQL database integration for persistent and reliable data storage</li>
+                <li>CSV export using Pandas for easy data reporting and analysis</li>
+                <li>Interactive Tkinter GUI with a clean, user-friendly layout</li>
+                <li>Employee data table with dynamic search filters and column sorting</li>
+              </ul>
+            </div>
+          </div>
+          <div class="proj-panel">
+            <div class="proj-panel-section">
+              <div class="proj-panel-label">Tech Stack</div>
+              <div class="stack-pills">
+                <span class="stack-pill">Python</span>
+                <span class="stack-pill">Tkinter</span>
+                <span class="stack-pill">MySQL</span>
+                <span class="stack-pill">Pandas</span>
+                <span class="stack-pill">Desktop App</span>
+              </div>
+            </div>
+            <div class="proj-panel-section">
+              <div class="proj-panel-label">Type</div>
+              <p style="font-size:13px;color:var(--muted);">Desktop GUI Application with full database connectivity and export capabilities.</p>
+            </div>
+            <div class="proj-panel-section">
+              <div class="proj-panel-label">Links</div>
+              <div class="proj-actions">
+                <a href="https://github.com/Gokul-61/Employee-Management-System" target="_blank" class="proj-btn">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+                  Source Code
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 02 -->
+      <div class="proj-card-detailed reveal">
+        <div class="proj-card-header">
+          <div class="proj-card-header-left">
+            <div class="proj-num-badge">
+              <span class="badge-dot"></span>
+              Project 02
+            </div>
+            <h2 class="proj-title-detailed">Crypto Tracker &amp; Paper Trading Simulator</h2>
+            <span class="proj-type-badge">Full-Stack Web Application</span>
+          </div>
+          <div class="proj-card-header-right">
+  <a href="https://crypto-tracker-ahoo.onrender.com/" target="_blank" class="proj-btn">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+      <polyline points="15 3 21 3 21 9"/>
+      <line x1="10" y1="14" x2="21" y2="3"/>
+    </svg>
+    Live Demo
+  </a>
+</div>
+        </div>
+        <div class="proj-card-body">
+          <div class="proj-main">
+            <p class="proj-desc-detailed">
+              Full-stack crypto trading simulator with real-time market data, portfolio tracking, and REST API integration.
+            </p>
+            <div class="proj-features">
+              <div class="proj-features-title">Key Features</div>
+              <ul class="proj-features-list">
+              <li>Real-time market data using REST APIs</li>
+              <li>Paper trading simulation</li>
+              <li>Portfolio and transaction tracking</li>
+              <li>Email authentication system</li>
+              <li>Price alerts and analytics dashboard</li>
+              </ul>
+            </div>
+          </div>
+          <div class="proj-panel">
+            <div class="proj-panel-section">
+              <div class="proj-panel-label">Tech Stack</div>
+              <div class="stack-pills">
+                <span class="stack-pill">Python</span>
+                <span class="stack-pill">Flask</span>
+                <span class="stack-pill">SQLite</span>
+                <span class="stack-pill">REST APIs</span>
+                <span class="stack-pill">HTML</span>
+                <span class="stack-pill">CSS</span>
+                <span class="stack-pill">JavaScript</span>
+              </div>
+            </div>
+            <div class="proj-panel-section">
+              <div class="proj-panel-label">Type</div>
+              <p style="font-size:13px;color:var(--muted);">Full-stack web application with backend APIs, database layer, and dynamic frontend dashboard.</p>
+            </div>
+            <div class="proj-panel-section">
+              <div class="proj-panel-label">Links</div>
+              <div class="proj-actions">
+                <a href="https://github.com/Gokul-61/Crypto-Tracker" target="_blank" class="proj-btn">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+                  Source Code
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 03 -->
+      <div class="proj-card-detailed reveal">
+        <div class="proj-card-header">
+          <div class="proj-card-header-left">
+            <div class="proj-num-badge">
+              <span class="badge-dot"></span>
+              Project 03
+            </div>
+            <h2 class="proj-title-detailed">AI Product Chatbot (Multilingual Assistant)</h2>
+            <span class="proj-type-badge">Full-Stack Web Application</span>
+          </div>
+         <div class="proj-card-header-right">
+  <a href="https://chimertech-chatbot.vercel.app/" class="proj-btn" target="_blank">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+      <polyline points="15 3 21 3 21 9"/>
+      <line x1="10" y1="14" x2="21" y2="3"/>
+    </svg>
+    Live Demo
+  </a>
+</div>
+        </div>
+        <div class="proj-card-body">
+          <div class="proj-main">
+            <p class="proj-desc-detailed">
+              Full-stack AI chatbot with multilingual support, fuzzy search, and WhatsApp messaging integration.
+            </p>
+            <div class="proj-features">
+              <div class="proj-features-title">Key Features</div>
+              <ul class="proj-features-list">
+                <li>Multilingual support (English, Tamil, Hindi)</li>
+                <li>Intelligent product search using fuzzy matching</li>
+                <li>REST API backend with Flask</li>
+                <li>WhatsApp integration with Twilio</li>
+                <li>Automatic language translation</li>
+              </ul>
+            </div>
+          </div>
+          <div class="proj-panel">
+            <div class="proj-panel-section">
+              <div class="proj-panel-label">Tech Stack</div>
+              <div class="stack-pills">
+                <span class="stack-pill">Python</span>
+                <span class="stack-pill">Flask</span>
+                <span class="stack-pill">SQLite</span>
+                <span class="stack-pill">FuzzyWuzzy</span>
+                <span class="stack-pill">Google Translate API</span>
+                <span class="stack-pill">Twilio</span>
+                <span class="stack-pill">HTML</span>
+                <span class="stack-pill">CSS</span>
+              </div>
+            </div>
+            <div class="proj-panel-section">
+              <div class="proj-panel-label">Type</div>
+              <p style="font-size:13px;color:var(--muted);">Full-stack AI chatbot with multilingual NLP, fuzzy matching, and WhatsApp messaging integration.</p>
+            </div>
+            <div class="proj-panel-section">
+              <div class="proj-panel-label">Links</div>
+              <div class="proj-actions">
+                <a href="https://github.com/Gokul-61/Chimertech-Chatbot" target="_blank" class="proj-btn">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+                  Source Code
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 04 -->
+      <div class="proj-card-detailed reveal">
+        <div class="proj-card-header">
+          <div class="proj-card-header-left">
+            <div class="proj-num-badge">
+              <span class="badge-dot"></span>
+              Project 04
+            </div>
+            <h2 class="proj-title-detailed">Cattle Nutrition Advisor (BIS/ICAR Standards)</h2>
+            <span class="proj-type-badge">Data-Driven Web Application</span>
+          </div>
+          <div class="proj-card-header-right">
+  <a href="https://bis-nutrition-advisor.streamlit.app/" class="proj-btn">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+      <polyline points="15 3 21 3 21 9"/>
+      <line x1="10" y1="14" x2="21" y2="3"/>
+    </svg>
+    Live Demo
+  </a>
+</div>
+        </div>
+        <div class="proj-card-body">
+          <div class="proj-main">
+            <p class="proj-desc-detailed">
+              Data-driven web application for cattle nutrition planning based on BIS and ICAR standards with automated report generation.</p>
+
+            <div class="proj-features">
+              <div class="proj-features-title">Key Features</div>
+              <ul class="proj-features-list">
+                <li>Nutrient calculations based on BIS/ICAR standards</li>
+                <li>Firebase cloud database integration</li>
+                <li>Support for multiple cattle categories</li>
+                <li>Automated PDF report generation</li>
+                <li>Interactive Streamlit dashboard</li>
+              </ul>
+            </div>
+          </div>
+          <div class="proj-panel">
+            <div class="proj-panel-section">
+              <div class="proj-panel-label">Tech Stack</div>
+              <div class="stack-pills">
+                <span class="stack-pill">Python</span>
+                <span class="stack-pill">Streamlit</span>
+                <span class="stack-pill">Firebase</span>
+                <span class="stack-pill">Pandas</span>
+                <span class="stack-pill">ReportLab</span>
+                <span class="stack-pill">Data Analytics</span>
+              </div>
+            </div>
+            <div class="proj-panel-section">
+              <div class="proj-panel-label">Type</div>
+              <p style="font-size:13px;color:var(--muted);">Data-driven advisory web app with cloud database, analytics, and automated PDF report generation.</p>
+            </div>
+            <div class="proj-panel-section">
+              <div class="proj-panel-label">Links</div>
+              <div class="proj-actions">
+                <a href="https://github.com/Gokul-61/BIS-Nutrition-Advisor" target="_blank" class="proj-btn">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+                  Source Code
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GITHUB CTA -->
+  <div class="section">
+    <div class="github-cta reveal">
+      <div class="github-cta-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="#f97316"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+      </div>
+      <h3>More on GitHub</h3>
+      <p>All my source code, experiments, and side projects live on GitHub. Feel free to explore, fork, or reach out if you want to collaborate.</p>
+      <div class="github-cta-btns">
+        <a href="https://github.com/Gokul-61" target="_blank" class="btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          Visit GitHub Profile
+        </a>
+        <a href="index2.html" class="btn-ghost">
+          ← Back to Portfolio
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- CONTACT -->
+<section id="contact-section">
+  <div class="contact-inner">
+    <div class="contact-emoji">👋</div>
+    <h2>Let's work <em>together.</em></h2>
+    <p>I'm actively looking for backend internships and developer roles. If you think I'd be a good fit for your team, I'd love to hear from you.</p>
+    <div class="contact-links">
+      <a href="mailto:gokulr1609@gmail.com" class="c-link primary">
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M4 4h16v16H4z"/>
+    <path d="M22 6l-10 7L2 6"/>
+  </svg>
+  Email Me
+</a>
+      <a href="https://www.linkedin.com/in/gokul-r-036704291/" target="_blank" class="c-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/Gokul-61" target="_blank" class="c-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Gokul R. — Chennai, India</span>
+  <span><a href="#hero">Back to top ↑</a></span>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const siblings = Array.from(e.target.parentNode.children);
+        const i = siblings.indexOf(e.target);
+        e.target.style.transitionDelay = (i * 0.08) + 's';
+        e.target.classList.add('in');
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
