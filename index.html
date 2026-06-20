@@ -85,6 +85,43 @@ nav {
 }
 .nav-btn:hover { background: var(--orange); transform: translateY(-1px); }
 
+/* ─── MOBILE NAV TOGGLE ─── */
+.nav-toggle {
+  display: none;
+  background: none; border: none; cursor: pointer;
+  width: 36px; height: 36px;
+  align-items: center; justify-content: center;
+  flex-direction: column; gap: 5px;
+  flex-shrink: 0;
+}
+.nav-toggle span {
+  display: block; width: 22px; height: 2px;
+  background: var(--ink); border-radius: 2px;
+  transition: transform .25s ease, opacity .25s ease;
+}
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-menu {
+  position: fixed; top: 64px; left: 0; right: 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  max-height: 0; overflow: hidden;
+  transition: max-height .3s ease;
+  z-index: 99;
+  box-shadow: 0 12px 24px -8px rgba(0,0,0,.08);
+}
+.mobile-menu.open { max-height: 360px; }
+.mobile-menu a {
+  padding: 16px max(32px, 5vw);
+  font-size: 15px; font-weight: 500; color: var(--ink2);
+  border-bottom: 1px solid var(--border);
+}
+.mobile-menu a:last-child { border-bottom: none; color: var(--orange); font-weight: 600; }
+.mobile-menu a.active { color: var(--orange); }
+
 /* ─── HERO ─── */
 #hero {
   max-width: 960px; margin: 0 auto;
@@ -408,6 +445,7 @@ footer a { color: var(--orange); }
 @media(max-width: 768px) {
   nav { padding: 0 20px; }
   .nav-links { display: none; }
+  .nav-toggle { display: flex; }
   #hero { grid-template-columns: 1fr; padding: 52px 20px 48px; gap: 32px; }
   .hero-right { display: none; }
   .wrap { padding: 0 20px; }
@@ -435,8 +473,19 @@ footer a { color: var(--orange); }
   <a href="https://drive.google.com/file/d/1qVssc4py6gnAvdmnpbxxEdR1jhvBA94D/view?usp=sharing" target="_blank" class="nav-btn">
     Resume 
 </a>
-  
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#skills">Skills</a>
+  <a href="#experience">Experience</a>
+  <a href="projects.html">Projects</a>
+  <a href="#education">Education</a>
+  <a href="https://drive.google.com/file/d/1qVssc4py6gnAvdmnpbxxEdR1jhvBA94D/view?usp=sharing" target="_blank">Resume</a>
+</div>
 
 <!-- STRIP -->
 <div class="strip">
@@ -706,6 +755,22 @@ footer a { color: var(--orange); }
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // ─── MOBILE NAV TOGGLE ───
+  const navToggle = document.getElementById('navToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navToggle.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navToggle.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
 </script>
 
 </body>
